@@ -1,0 +1,26 @@
+html, body, ul, li, dl, dd, dt, p, h1, h2, h3, form, fieldset, legend, img, span, i, input, select, textarea, nav, header, main, section, footer, aside, div { 
+    margin:0; 
+    padding:0;
+}
+html{
+    font-size: 100px;
+    height: 100%;
+}
+body{
+    font-size: 16px;
+    height: 100%;
+    dispaly: flex;
+}
+ul{ 
+    list-style:none;
+}
+h1, h2, h3, i{
+    font-style:normal; 
+    font-weight:normal;
+}
+a{
+    text-decoration:none;
+}
+img{
+    border:none;
+}
