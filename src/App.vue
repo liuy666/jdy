@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <Header @isDrop='handleDrop' />
+        <Header @isDrop='handleDrop' @isPush='handlePush' />
         <main>
             <router-view/>
         </main>
@@ -8,7 +8,7 @@
         <!-- 模态框 -->
         <div class="mask" v-show='isDrop' @click='handleGoto'>
             <section>                
-                <!-- <Sharp :show="isShow" content="技术" v-on:toggle="handleToggle" />  -->            
+                <div class="title" @click="handleShow">技术<span class="rotateHeader"></span></div>           
                 <transition name="slide">
                    <ul class="top-ul" v-show='isShow'>
                         <li><router-link to="/face" href="#">人脸识别</router-link></li>
@@ -33,7 +33,7 @@ export default {
     data(){
         return {
             isDrop : false,
-            isShow : true,
+            isShow : false,
         }
     },
     components : {
@@ -43,6 +43,11 @@ export default {
     methods: {
         handleDrop(){
             this.isDrop = !this.isDrop;
+            document.getElementsByClassName("rotateHeader")[0].style.transform = "rotate(90deg)";
+            this.isShow = false;
+        },
+        handlePush(isPush){
+            this.isDrop = isPush;
         },
         handleGoto(e){
             // console.log(e.target.tagName)
@@ -51,8 +56,13 @@ export default {
                 this.isShow = false;
             }
         },
-        handleToggle(isShow){
-            this.isShow = isShow;
+        handleShow(e){
+            if(this.isShow){
+                e.currentTarget.children[0].style.transform = "rotate(90deg)";
+            }else{
+                e.currentTarget.children[0].style.transform = "rotate(-90deg)";
+            }
+            this.isShow = !this.isShow;
         }
     }
 }
@@ -77,6 +87,23 @@ export default {
             font-size: 0.11rem;
             section{
                 color: #ccc;
+                .title{
+                    padding: 0 0.18rem 0 0.2rem;
+                    height: 0.31rem;
+                    line-height: 0.31rem;
+                    border-bottom: 0.01rem solid #3b676b;
+                    position: relative;
+                    .rotateHeader{
+                        position: absolute;
+                        right: 0.175rem;
+                        transform: rotate(90deg);
+                        transition: transform .5s linear;
+                        &::after{
+                            content: ">";
+                            font-family: monospace;      
+                        }                                                
+                    }      
+                }
                 .top-ul{
                     overflow: hidden;
                     li{                        
@@ -105,7 +132,7 @@ export default {
         }
     }
     .slide-enter-active, .slide-leave-active {
-        transition: height .2s linear;
+        transition: height .5s linear;
     }
     .slide-enter, .slide-leave-to {
         height: 0rem;

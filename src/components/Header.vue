@@ -19,6 +19,7 @@ export default{
         },
         goIndex(){
             this.$router.push('/');
+            this.$emit('isPush',false);
         }
     }
 }

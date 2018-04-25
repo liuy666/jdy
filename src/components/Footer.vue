@@ -2,7 +2,7 @@
     <footer>
         <ul id="footer-menu" class="menu" >
             <li class="menu-item">
-                <div class="title" @click="handleDrop">产品<span id="rotate"></span></div>         
+                <div class="title" @click="handleDrop">产品<span class="rotate"></span></div>         
                 <ul class="subMenu">
                     <li class="sub">奇点云信</li>
                     <li class="sub">奇点热点</li>
@@ -11,14 +11,14 @@
                 </ul>            
             </li>
             <li class="menu-item">
-                <div class="title" @click="handleDrop">解决方案<span id="rotate"></span></div>         
+                <div class="title" @click="handleDrop">解决方案<span class="rotate"></span></div>         
                 <ul class="subMenu">
                     <li class="sub">新零售解决方案</li>
                     <li class="sub">云端小镇解决方案</li>
                 </ul>            
             </li>
             <li class="menu-item">
-                <div class="title" @click="handleDrop">加入我们<span id="rotate"></span></div>         
+                <div class="title" @click="handleDrop">加入我们<span class="rotate"></span></div>         
                 <ul class="subMenu">
                     <li class="sub">职位描述</li>
                 </ul>            
@@ -39,25 +39,23 @@
 
 <script>
     export default{
-        data(){
-            return {
-                show : true
-            }
-        },
         methods: {
             handleDrop(e){
-                Array.from(document.getElementById("footer-menu").children).forEach( curr => {
-                    curr.children[1].style.display = "none";
-                });
-                if(this.show){
+            	if(e.currentTarget.nextElementSibling.style.display !== "block"){
+            		Array.from(document.getElementById("footer-menu").children).forEach( curr => {
+	                    curr.children[1].style.display = "none";
+	                });
+	                Array.from(document.getElementsByClassName("rotate")).forEach( curr => {
+	                    curr.style.transform = "rotate(90deg)"
+	                });
                     e.currentTarget.children[0].style.transform = "rotate(-90deg)";
                     e.currentTarget.nextElementSibling.style.display = "block";
-                }else{
-                    e.currentTarget.children[0].style.transform = "rotate(90deg)";
+	                console.log(1)
+            	}else{
+            		e.currentTarget.children[0].style.transform = "rotate(90deg)";
                     e.currentTarget.nextElementSibling.style.display = "none";
-                }
-                // 现在没点一次切换show  应该判断何时不切换
-                this.show = !this.show;
+                    console.log(2)
+            	}
             }
         }
     }
@@ -77,7 +75,7 @@
                     line-height: 0.31rem;
                     border-bottom: 0.01rem solid #3b676b;
                     position: relative;
-                    #rotate{
+                    .rotate{
                         position: absolute;
                         right: 0.175rem;
                         transform: rotate(90deg);
