@@ -5,15 +5,10 @@
             <router-view/>
         </main>
         <Footer/>
+        <!-- 模态框 -->
         <div class="mask" v-show='isDrop' @click='handleGoto'>
             <section>                
-                <div @click='handleToggle'>
-                    技术
-                    <transition name="rotate">
-                        <span class="bottom" v-if='!isShow'></span>
-                        <span class="top" v-else></span>
-                    </transition>
-                </div>                
+                <!-- <Sharp :show="isShow" content="技术" v-on:toggle="handleToggle" />  -->            
                 <transition name="slide">
                    <ul class="top-ul" v-show='isShow'>
                         <li><router-link to="/face" href="#">人脸识别</router-link></li>
@@ -37,23 +32,15 @@ export default {
     name: 'App',
     data(){
         return {
-            isShow : false,
             isDrop : false,
+            isShow : true,
         }
     },
     components : {
         Header,
-        Footer,
+        Footer
     },
     methods: {
-        handleToggle(){
-            this.isShow = !this.isShow;
-            // DOM操作~~
-            // if(this.isShow)
-            //     document.getElementById('rotate').style.transform = 'rotate(-90deg)';
-            // else
-            //     document.getElementById('rotate').style.transform = 'rotate(90deg)';
-        },
         handleDrop(){
             this.isDrop = !this.isDrop;
         },
@@ -63,6 +50,9 @@ export default {
                 this.isDrop = !this.isDrop;
                 this.isShow = false;
             }
+        },
+        handleToggle(isShow){
+            this.isShow = isShow;
         }
     }
 }
@@ -75,14 +65,8 @@ export default {
         width: 3.75rem;
         height: 100%;
         background-color: #e8e8e8;
-        display: flex;
-        flex-direction: column;
         position: relative;
-        overflow: hidden;
-        main{
-            flex: 1;
-            overflow: auto;
-        }
+        overflow: auto;
         /* 模态框 */
         .mask{
             height: 100%;
@@ -93,33 +77,6 @@ export default {
             font-size: 0.11rem;
             section{
                 color: #ccc;
-                div{
-                    height: 0.31rem;
-                    line-height: 0.31rem;
-                    border-bottom: 0.01rem solid #484a4a;
-                    padding: 0 0.18rem 0 0.2rem;
-                    position: relative;
-                    span{
-                        position: absolute;
-                        right: 0.175rem;                                                
-                    } 
-                    .bottom{
-                        transform: rotate(90deg);
-                        transition: transform .5s linear;
-                        &::after{
-                            content: ">";
-                            font-family: monospace;      
-                        }
-                    }
-                    .top {
-                        transform: rotate(-90deg);
-                        transition: transform .5s linear;
-                        &::after{
-                            content: "<";
-                            font-family: monospace;      
-                        }
-                    }       
-                }
                 .top-ul{
                     overflow: hidden;
                     li{                        

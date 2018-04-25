@@ -26,19 +26,37 @@
         <section class="swiper-item">
             <p class="item-title">行业解决方案</p> 
             <p class="item-subTitle">新零售解决方案</p> 
-            <p class="item-img"><img src="" /></p> 
+            <p class="item-img"><img src="/static/imgs/s1.png" /></p> 
             <p class="item-describe">为行业客户提供高质量低成本的网络、计算、存储、大数据等基础资源,助力O2O客户走进互联网的“场景时代”，并结合大数据能力帮助电商企业快速搭建平台、应对业务高并发，剖析秒杀、视频直播等场景。</p> 
             <a href="tel:057128121848" class="item-button">联系我们了解更多</a>
+            <div class="switch">
+                <span></span>
+                <span></span>
+            </div>
         </section>
+        <section class="home-facilitator">
+            <p class="title">用心服务、携手共赢</p> 
+            <p class="subTitle">阿里云金牌服务商，与多家企业达成战略合作关系</p> 
+            <div class="facilitator-imgs">
+                <img src="/static/imgs/img1.png" /> 
+                <img src="/static/imgs/img1.png" /> 
+                <img src="/static/imgs/img1.png" />
+                <img src="/static/imgs/img1.png" /> 
+                <img src="/static/imgs/img1.png" />
+            </div>
+        </section>
+        <Concact />
     </section>
 </template>
 <script>
     import Server from '@/components/Server'
     import Product from '@/components/Product'
+    import Concact from '@/components/Concact'
     export default{
         components: {
             Server,
             Product,
+            Concact,
         }
     }
 </script>
@@ -117,17 +135,78 @@
             .item-title{
                 font-size: 0.18rem;
                 color: #e1f8fa;
-                margin: 0.29rem 0 0.325rem;
+                margin: 0.15rem 0 0.27rem;
             }
             .item-subTitle{
                 font-size: 0.14rem;
                 color: #e1f8fa;
+                margin-bottom: 0.15rem;
             }
             .item-describe{
-                font-size: 0.13rem;
+                width: 3.275rem;
+                margin: 0.12rem auto 0.14rem;
+                font-size: 0.12rem;
                 line-height: 0.16rem;
+            }
+            .item-img{
+                height: 1.365rem;
+                img{
+                    height: 1.365rem;
+                }
+            }
+            a.item-button{
+                display: block;
+                width: 1.28rem;
+                height: 0.32rem;
+                line-height: 0.32rem;
+                margin: 0 auto 0.15rem; 
+                color: #fff;
+                border: 0.005rem solid #fff;
+                border-radius: 0.03rem;
+                font-size: 0.14rem;
+                text-align: center;
+            }
+            .switch{
+                display: flex;
+                margin: 0.1rem auto 0;
+                width: 2.12rem;
+                span{
+                    width: 1.0rem;
+                    height: 0.02rem;
+                    background: #1ccada;
+                    margin: 0 0.03rem;
+                }
+            }
+        }
+        .home-facilitator{
+            text-align: center;
+            background: #f7f7f7;
+            overflow: hidden;
+            .title{
+                font-size: 0.21rem;
+                color: #072b2f;
+                margin: 0.28rem 0 0.22rem;
+            }
+            .subTitle{
+                font-size: 0.13rem;
+                color: #4c6668;
+                margin-bottom: 0.22rem;
+            }
+            .facilitator-imgs{
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: flex-start;
+                box-sizing: border-box;
+                padding: 0 0.12rem;
+                margin-bottom: 0.17rem;
+                img{
+                    width: 1.1rem;
+                    height: 0.28rem;
+                    margin: 0 0.025rem 0.24rem;
+                }
             }
         }
     }
     
 </style>
+
